@@ -44,4 +44,23 @@ public class AdministrarAlumno {
 
     }
 
+    public  void listarAlumnos() {
+
+        String formato = "| %-12s | %-15s | %-4s | %-12s | %-15s | %-4s | %-15s | %-4s |\n";
+
+
+        output.imprimirLinea();
+        output.imprimirCabecera(formato);
+        output.imprimirLinea();
+
+
+        for (Alumno alumno : listaAlumnos) {
+
+            output.imprimirAlumno(formato,alumno.getDniAlumno(), alumno.getNombreCompleto(), alumno.getEdad(), alumno.getFechaNac(), alumno.getAsignatura1(), alumno.getNostaAsignatura1(), alumno.getAsignatura2(), alumno.getNotaAsignatura2());
+        }
+
+        output.imprimirLinea();
+    }
+
+
 }
