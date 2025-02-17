@@ -83,4 +83,8 @@ public class Output {
     public void mostrarMensajeOocionInvalida() {
         System.out.println("opcion invalida");
     }
+
+    public void mostrarMensajeAlumnoEliminado() {
+        System.out.println("Alumno se elimino correctamente");
+    }
 }

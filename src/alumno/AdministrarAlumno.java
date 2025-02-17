@@ -4,6 +4,7 @@ import input.Input;
 import output.Output;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class AdministrarAlumno {
@@ -139,6 +140,50 @@ public class AdministrarAlumno {
 
 
     }
+
+    public void eliminarAlumnos(){
+
+        String formato = "| %-12s | %-15s | %-15s | %-4s | %-15s | %-4s |\n";
+
+
+        output.imprimirLineaModificar();
+        output.imprimirCabeceraActulizar(formato);
+        output.imprimirLineaModificar();
+
+
+        for (Alumno alumno : listaAlumnos) {
+
+            output.imprimirAlumnoModificar(formato,alumno.getDniAlumno(), alumno.getNombreCompleto(), alumno.getAsignatura1(), alumno.getNostaAsignatura1(), alumno.getAsignatura2(), alumno.getNotaAsignatura2());
+        }
+
+        output.imprimirLineaModificar();
+
+        Iterator<Alumno> iAlumno = listaAlumnos.iterator();
+
+        boolean encontrado = false;
+
+
+        output.mostrarMensajeDni();
+        String dni = input.getPalabra();
+
+        while (iAlumno.hasNext() && !encontrado){
+
+            if (iAlumno.next().getDniAlumno().equals(dni)){
+                iAlumno.remove();
+                encontrado = true;
+            }
+        }
+
+
+        if (!encontrado){
+            output.mostrarMensajeDniNoEncontrado();
+        }else {
+            output.mostrarMensajeAlumnoEliminado();
+        }
+
+
+    }
+
 
 
 
