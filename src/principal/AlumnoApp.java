@@ -1,5 +1,6 @@
 package principal;
 
+import alumno.AdministrarAlumno;
 
 import input.Input;
 import output.Output;
@@ -11,6 +12,7 @@ public class AlumnoApp {
     private static Input input;
     private static boolean usuarioQuiereSeguir;
     private static int opcionMenu;
+    private static AdministrarAlumno alumno;
 
 
 
@@ -19,6 +21,7 @@ public class AlumnoApp {
         output = new Output();
         input = new Input();
         usuarioQuiereSeguir = true;
+        alumno = new AdministrarAlumno();
 
 
 
@@ -59,7 +62,7 @@ public class AlumnoApp {
 
         switch (opcionMenu){
             case 1 ->{
-
+            agregarAlumno();
 
             }
             case 2 ->{
@@ -77,7 +80,10 @@ public class AlumnoApp {
         }
     }
 
+    private static void agregarAlumno(){
 
+        alumno.agregarAlumno();
+    }
 
 
 
