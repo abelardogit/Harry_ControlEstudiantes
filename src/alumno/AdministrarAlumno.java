@@ -63,4 +63,85 @@ public class AdministrarAlumno {
     }
 
 
+    public void actualizarAlumnos() {
+
+        String formato = "| %-12s | %-15s | %-15s | %-4s | %-15s | %-4s |\n";
+
+
+        output.imprimirLineaModificar();
+        output.imprimirCabeceraActulizar(formato);
+        output.imprimirLineaModificar();
+
+
+        for (Alumno alumno : listaAlumnos) {
+
+            output.imprimirAlumnoModificar(formato,alumno.getDniAlumno(), alumno.getNombreCompleto(), alumno.getAsignatura1(), alumno.getNostaAsignatura1(), alumno.getAsignatura2(), alumno.getNotaAsignatura2());
+        }
+
+        output.imprimirLineaModificar();
+
+
+
+        int i =0;
+        boolean encontrado = false;
+
+        output.mostrarMensajeDni();
+        String dni = input.getPalabra();
+
+
+        while (!encontrado && i < listaAlumnos.size()){
+
+            if (listaAlumnos.get(i).getDniAlumno().equals(dni)){
+                encontrado = true;
+            }else {
+                i++;
+            }
+
+        }
+
+        if (encontrado){
+
+            output.imprimirMensajeSeleccionAlumnosActualizar();
+
+            int opcionAsignaturaActualizar = input.getInt();
+
+            if (opcionAsignaturaActualizar == 1){
+                output.mostrarMensajeAsignatura();
+                String asignaturaActualizada1 = input.getPalabra();
+                output.mostrarMensajeNota();
+                double notaActualizada1 = input.getDouble();
+                listaAlumnos.get(i).setAsignatura1(asignaturaActualizada1);
+                listaAlumnos.get(i).setNostaAsignatura1(notaActualizada1);
+            } else if (opcionAsignaturaActualizar == 2) {
+                output.mostrarMensajeAsignatura();
+                String asignaturaActualizada2 = input.getPalabra();
+                output.mostrarMensajeNota();
+                double notaActualizada2 = input.getDouble();
+
+
+                listaAlumnos.get(i).setAsignatura2(asignaturaActualizada2);
+
+                listaAlumnos.get(i).setNotaAsignatura2(notaActualizada2);
+            }else {
+
+                output.mostrarMensajeOocionInvalida();
+            }
+
+
+
+
+        }else {
+            output.mostrarMensajeDniNoEncontrado();
+
+        }
+
+
+
+
+    }
+
+
+
 }
+
+
