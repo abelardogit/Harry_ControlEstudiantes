@@ -38,9 +38,22 @@ public class Output {
         System.out.println("ingrese Nota");
     }
 
+    public void imprimirMensajeSeleccionAlumnosActualizar(){
+        System.out.println("""
+                    Elija asignatura a actualizar
+                    1.Asignatura 1
+                    2.Asignatura 2
+                    """);
+    }
+
     public void imprimirCabecera(String formato){
 
         System.out.printf(formato," Dni ", "Nombre Alumno", "Edad", "Fecha", "Asignatura 1", "Nota", "Asignatura 2", "Nota");
+    }
+
+    public void imprimirCabeceraActulizar(String formato){
+
+        System.out.printf(formato," Dni ", "Nombre Alumno", "Asignatura 1", "Nota", "Asignatura 2", "Nota");
     }
 
     public void imprimirAlumno(String formato, String dniAlumno, String nombre, int edad, String fecha, String asignatura1, double nota1,String asignatura2 , double nota2){
@@ -51,5 +64,23 @@ public class Output {
     public void imprimirLinea(){
         System.out.println("+--------------+-----------------+------+--------------+-----------------+------+-----------------+------+");
 
+    }
+
+    public void imprimirLineaModificar(){
+        System.out.println("+--------------+-----------------+-----------------+------+-----------------+------+");
+
+    }
+    public void imprimirAlumnoModificar(String formato, String dniAlumno, String nombre, String asignatura1, double nota1,String asignatura2 , double nota2){
+
+        System.out.printf(formato,dniAlumno, nombre, asignatura1, nota1, asignatura2, nota2);
+    }
+
+
+    public void mostrarMensajeDniNoEncontrado() {
+        System.out.println("Dni no encontrado");
+    }
+
+    public void mostrarMensajeOocionInvalida() {
+        System.out.println("opcion invalida");
     }
 }
