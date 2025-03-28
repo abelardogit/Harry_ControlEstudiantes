@@ -3,9 +3,7 @@ package alumno;
 import input.Input;
 import output.Output;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class AdministrarAlumno {
 
@@ -27,6 +25,10 @@ public class AdministrarAlumno {
         String dniAlumno = input.getPalabra();
         output.mostrarMensajeNombre();
         String nombre = input.getPalabra();
+        System.out.println("ingrese apellido 1");
+        String apellido1 = input.getPalabra();
+        System.out.println("ingrese apellido 2");
+        String apellido2 = input.getPalabra();
         output.mostrarMensajeEdad();
         int edad = input.getInt();
         output.mostrarMensajeFechaNac();
@@ -40,7 +42,7 @@ public class AdministrarAlumno {
         output.mostrarMensajeNota();
         double nota2 = input.getDouble();
 
-        listaAlumnos.add(new Alumno(dniAlumno,nombre,edad,fechaNac,asignatura1,nota1,asignatura2,nota2));
+        listaAlumnos.add(new Alumno(dniAlumno,nombre,apellido1, apellido2,edad,fechaNac,asignatura1,nota1,asignatura2,nota2));
 
 
     }
@@ -183,6 +185,54 @@ public class AdministrarAlumno {
 
 
     }
+
+
+
+    public void buscarAlumno(){
+
+        ordenarListaAlumnos(listaAlumnos);
+
+    }
+
+
+
+
+
+        public static void ordenarListaAlumnos(List<Alumno> listaAlumnos) {
+            int numberOfNumbers = listaAlumnos.size();
+            for (int i = 0; i < numberOfNumbers; i++) {
+                for (int j = 0; j < numberOfNumbers - 1; j++) {
+                    if (compararCadenas(listaAlumnos.get(j).getApellido1(),listaAlumnos.get(j+1).getApellido1())) {
+                        swap(listaAlumnos.get(j), j, j + 1);
+
+                    }
+                }
+            }
+        }
+
+
+        private static boolean compararCadenas(String cadena1, String cadena2){
+
+        boolean esMayor = false;
+        int tamañoCadena = cadena1.length();
+            for (int i = 0; i < tamañoCadena; i++) {
+                    if (cadena1.charAt(i) > cadena2.charAt(i)){
+                        esMayor = true;
+                    }
+            }
+            return  esMayor;
+        }
+
+
+    private static void swap(List<Alumno> data, int a, int b) {
+
+        Alumno temp = data.set(a,data.get(a));
+        data.get(a) = data.set(b,data.get(b));
+        data.set(b,data.get(b)) = temp;
+    }
+
+
+
 
 
 

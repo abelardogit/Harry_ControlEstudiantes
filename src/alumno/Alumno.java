@@ -4,6 +4,9 @@ public class Alumno {
 
     String dniAlumno;
     String nombreCompleto;
+
+    String apellido1;
+    String apellido2;
     int edad;
     String fechaNac;
     String asignatura1;
@@ -17,9 +20,11 @@ public class Alumno {
 
     }
 
-    public Alumno(String dniAlumno, String nombreCompleto, int edad, String fechaNac, String asignatura1,double nostaAsignatura1, String asignatura2,  double notaAsignatura2) {
+    public Alumno(String dniAlumno, String nombreCompleto,String apellido1, String apellido2, int edad, String fechaNac, String asignatura1,double nostaAsignatura1, String asignatura2,  double notaAsignatura2) {
         this.dniAlumno = dniAlumno;
         this.nombreCompleto = nombreCompleto;
+        this.apellido1 = apellido1;
+        this.apellido2 = apellido2;
         this.edad = edad;
         this.fechaNac = fechaNac;
         this.asignatura1 = asignatura1;
@@ -78,10 +83,24 @@ public class Alumno {
         this.notaAsignatura2 = notaAsignatura2;
     }
 
+    public String getApellido1() {
+        return apellido1;
+    }
+
+
+
+    public String getApellido2() {
+        return apellido2;
+    }
+
+
+
     @Override
     public String toString() {
         return
                 nombreCompleto + " "+
+                        apellido1 + " "+
+                        apellido2 + " "+
                         edad + " "+
                         fechaNac + " " +
                         asignatura1 + " " +
