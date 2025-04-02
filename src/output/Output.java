@@ -9,7 +9,8 @@ public class Output {
                 2.Listar Alumno
                 3.Modificar Alumno
                 4.Eliminar Alumno
-                5.Salir                
+                5.Buscar Alumno
+                6.Salir                
                 """);
     }
 

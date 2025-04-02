@@ -75,9 +75,18 @@ public class AlumnoApp {
                 eliminarAlumno();
             }
             case 5 ->{
+                buscarAlumno();
+            }
+            case 6 ->{
                 usuarioQuiereSeguir =false;
             }
+
         }
+    }
+
+    private static void buscarAlumno(){
+
+        alumno.buscarAlumno();
     }
 
     private static void agregarAlumno(){

@@ -192,6 +192,10 @@ public class AdministrarAlumno {
 
         ordenarListaAlumnos(listaAlumnos);
 
+        for (Alumno lista: listaAlumnos){
+            System.out.println(lista);
+        }
+
     }
 
 
@@ -203,7 +207,7 @@ public class AdministrarAlumno {
             for (int i = 0; i < numberOfNumbers; i++) {
                 for (int j = 0; j < numberOfNumbers - 1; j++) {
                     if (compararCadenas(listaAlumnos.get(j).getApellido1(),listaAlumnos.get(j+1).getApellido1())) {
-                        swap(listaAlumnos.get(j), j, j + 1);
+                        swap(listaAlumnos, j, j + 1);
 
                     }
                 }
@@ -226,9 +230,11 @@ public class AdministrarAlumno {
 
     private static void swap(List<Alumno> data, int a, int b) {
 
-        Alumno temp = data.set(a,data.get(a));
-        data.get(a) = data.set(b,data.get(b));
-        data.set(b,data.get(b)) = temp;
+        Alumno temp = data.get(a);
+        data.set(a,data.get(b));
+        data.set(b,temp);
+//        data.get(a) = data.set(b,data.get(b));
+//        data.set(b,data.get(b)) = temp;
     }
 
 
