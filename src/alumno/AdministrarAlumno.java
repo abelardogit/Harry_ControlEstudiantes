@@ -10,6 +10,9 @@ public class AdministrarAlumno {
     public static List<Alumno> listaAlumnos;
     public static Output output ;
     public static Input input ;
+    private static final int ENCONTRADO = 0;
+    private static final int NOENCONTRADO = -1;
+
 
 
     public AdministrarAlumno() {
@@ -20,7 +23,7 @@ public class AdministrarAlumno {
     }
 
 
-    public  void agregarAlumno(){
+    /*public  void agregarAlumno(){
         output.mostrarMensajeDni();
         String dniAlumno = input.getPalabra();
         output.mostrarMensajeNombre();
@@ -45,11 +48,27 @@ public class AdministrarAlumno {
         listaAlumnos.add(new Alumno(dniAlumno,nombre,apellido1, apellido2,edad,fechaNac,asignatura1,nota1,asignatura2,nota2));
 
 
+    }*/
+    public  void agregarAlumno(){
+
+
+        listaAlumnos.add(new Alumno("54452185","Mario","albazans","gallardo",28,"14/08/1996","mates",5,"letras",8));
+        listaAlumnos.add(new Alumno("45485454","hans","albania","gallardo",28,"14/08/1996","mates",5,"letras",8));
+        listaAlumnos.add(new Alumno("55445181","Antony","alba","gallardo",28,"14/08/1996","mates",5,"letras",8));
+        listaAlumnos.add(new Alumno("12151155","pedro","zzz","gallardo",28,"14/08/1996","mates",5,"letras",8));
+        listaAlumnos.add(new Alumno("87454851","hans","cebra","gallardo",28,"14/08/1996","mates",5,"letras",8));
+        listaAlumnos.add(new Alumno("21451245","pepe","caceres","gallardo",28,"14/08/1996","mates",5,"letras",8));
+        listaAlumnos.add(new Alumno("98659165","jose","gallardo","gallardo",28,"14/08/1996","mates",5,"letras",8));
+        listaAlumnos.add(new Alumno("64484445","maria","villanueva","gallardo",28,"14/08/1996","mates",5,"letras",8));
+        listaAlumnos.add(new Alumno("64915484","jacky","albac","gallardo",28,"14/08/1996","mates",5,"letras",8));
+        listaAlumnos.add(new Alumno("64915484","jacky","caceres","gallardo",28,"14/08/1996","mates",5,"letras",8));
+        listaAlumnos.add(new Alumno("64915484","jacky","barcelona","gallardo",28,"14/08/1996","mates",5,"letras",8));
     }
+
 
     public  void listarAlumnos() {
 
-        String formato = "| %-12s | %-15s | %-4s | %-12s | %-15s | %-4s | %-15s | %-4s |\n";
+        String formato = "| %-12s | %-15s | %-15s | %-15s | %-4s | %-12s | %-15s | %-4s | %-15s | %-4s |\n";
 
 
         output.imprimirLinea();
@@ -59,7 +78,7 @@ public class AdministrarAlumno {
 
         for (Alumno alumno : listaAlumnos) {
 
-            output.imprimirAlumno(formato,alumno.getDniAlumno(), alumno.getNombreCompleto(), alumno.getEdad(), alumno.getFechaNac(), alumno.getAsignatura1(), alumno.getNostaAsignatura1(), alumno.getAsignatura2(), alumno.getNotaAsignatura2());
+            output.imprimirAlumno(formato,alumno.getDniAlumno(),alumno.getNombreCompleto(), alumno.getApellido1(), alumno.getApellido2(), alumno.getEdad(), alumno.getFechaNac(), alumno.getAsignatura1(), alumno.getNostaAsignatura1(), alumno.getAsignatura2(), alumno.getNotaAsignatura2());
         }
 
         output.imprimirLinea();
@@ -130,16 +149,10 @@ public class AdministrarAlumno {
                 output.mostrarMensajeOocionInvalida();
             }
 
-
-
-
         }else {
             output.mostrarMensajeDniNoEncontrado();
 
         }
-
-
-
 
     }
 
@@ -188,25 +201,71 @@ public class AdministrarAlumno {
 
 
 
-    public void buscarAlumno(){
+   public void buscarAlumno(String alumnoBuscar){
 
         ordenarListaAlumnos(listaAlumnos);
 
-        for (Alumno lista: listaAlumnos){
-            System.out.println(lista);
+        int encontrado = encontrarEstudiante(listaAlumnos,alumnoBuscar);
+
+        if (encontrado != NOENCONTRADO){
+            System.out.println();
+            System.out.println("El alumno es :");
+
+            String formato = "| %-12s | %-15s | %-15s | %-15s | %-4s | %-12s | %-15s | %-4s | %-15s | %-4s |\n";
+
+
+            output.imprimirLinea();
+            output.imprimirCabecera(formato);
+            output.imprimirLinea();
+
+
+                output.imprimirAlumno(formato,listaAlumnos.get(encontrado).getDniAlumno(),
+                        listaAlumnos.get(encontrado).getNombreCompleto(),
+                        listaAlumnos.get(encontrado).getApellido1(),
+                        listaAlumnos.get(encontrado).getApellido2(),
+                        listaAlumnos.get(encontrado).getEdad(),
+                        listaAlumnos.get(encontrado).getFechaNac(),
+                        listaAlumnos.get(encontrado).getAsignatura1(),
+                        listaAlumnos.get(encontrado).getNostaAsignatura1(),
+                        listaAlumnos.get(encontrado).getAsignatura2(),
+                        listaAlumnos.get(encontrado).getNotaAsignatura2());
+
+
+            output.imprimirLinea();
+        }
+        else {
+            System.out.println("el alumno no ha sido encontrado");
         }
 
     }
 
+    public static int encontrarEstudiante(List<Alumno> listaAlumnos, String palabraBuscar) {
 
+            int inicio = 0;
+            int fin = listaAlumnos.size() - 1;
 
+            while (inicio <= fin) {
+                int medio = inicio + (fin - inicio) / 2;
+                int comparacion = palabraBuscar.compareTo(listaAlumnos.get(medio).getApellido1());
 
+                if (comparacion == ENCONTRADO) {
+                    return medio;
+                } else if (comparacion > ENCONTRADO) {
+                    inicio = medio + 1;
+                } else {
+                    fin = medio - 1;
+                }
+            }
+
+            return NOENCONTRADO;
+
+    }
 
         public static void ordenarListaAlumnos(List<Alumno> listaAlumnos) {
             int numberOfNumbers = listaAlumnos.size();
             for (int i = 0; i < numberOfNumbers; i++) {
-                for (int j = 0; j < numberOfNumbers - 1; j++) {
-                    if (compararCadenas(listaAlumnos.get(j).getApellido1(),listaAlumnos.get(j+1).getApellido1())) {
+                for (int j = 0; j < numberOfNumbers -1 ; j++) {
+                    if (compararCadenas2(listaAlumnos.get(j).getApellido1(),listaAlumnos.get(j+1).getApellido1())) {
                         swap(listaAlumnos, j, j + 1);
 
                     }
@@ -215,17 +274,37 @@ public class AdministrarAlumno {
         }
 
 
-        private static boolean compararCadenas(String cadena1, String cadena2){
 
-        boolean esMayor = false;
-        int tamañoCadena = cadena1.length();
-            for (int i = 0; i < tamañoCadena; i++) {
-                    if (cadena1.charAt(i) > cadena2.charAt(i)){
-                        esMayor = true;
-                    }
+    private static boolean compararCadenas2(String cadena1, String cadena2){
+
+        char[] arrCad1 = cadena1.toCharArray();
+        int numCarsCad1 = cadena1.length();
+
+        char[] arrCad2 = cadena2.toCharArray();
+        int numCarsCad2 = cadena2.length();
+
+        int indiceActual = 0;
+        int numMaxCaracteres = Math.min(numCarsCad1, numCarsCad2);
+
+        while (indiceActual < numMaxCaracteres) {
+            char currentChar1 = arrCad1[indiceActual];
+            char currentChar2 = arrCad2[indiceActual];
+            if (currentChar1 > currentChar2) {
+                return true;
+            }else if (currentChar1 < currentChar2) {
+                return false;
             }
-            return  esMayor;
+
+            indiceActual++;
         }
+
+        if (indiceActual == numMaxCaracteres) {
+            return numCarsCad1 > numCarsCad2;
+        }
+
+        return true;
+    }
+
 
 
     private static void swap(List<Alumno> data, int a, int b) {
@@ -233,13 +312,8 @@ public class AdministrarAlumno {
         Alumno temp = data.get(a);
         data.set(a,data.get(b));
         data.set(b,temp);
-//        data.get(a) = data.set(b,data.get(b));
-//        data.set(b,data.get(b)) = temp;
+
     }
-
-
-
-
 
 
 

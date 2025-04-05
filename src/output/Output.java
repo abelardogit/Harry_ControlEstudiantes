@@ -49,7 +49,7 @@ public class Output {
 
     public void imprimirCabecera(String formato){
 
-        System.out.printf(formato," Dni ", "Nombre Alumno", "Edad", "Fecha", "Asignatura 1", "Nota", "Asignatura 2", "Nota");
+        System.out.printf(formato," Dni ", "Nombre Alumno","Apellido 1", "Apellido 2", "Edad", "Fecha", "Asignatura 1", "Nota", "Asignatura 2", "Nota");
     }
 
     public void imprimirCabeceraActulizar(String formato){
@@ -57,13 +57,13 @@ public class Output {
         System.out.printf(formato," Dni ", "Nombre Alumno", "Asignatura 1", "Nota", "Asignatura 2", "Nota");
     }
 
-    public void imprimirAlumno(String formato, String dniAlumno, String nombre, int edad, String fecha, String asignatura1, double nota1,String asignatura2 , double nota2){
+    public void imprimirAlumno(String formato, String dniAlumno, String nombre, String apellido1, String apellido2, int edad, String fecha, String asignatura1, double nota1,String asignatura2 , double nota2){
 
-        System.out.printf(formato,dniAlumno, nombre, edad, fecha, asignatura1, nota1, asignatura2, nota2);
+        System.out.printf(formato,dniAlumno, nombre,apellido1,apellido2, edad, fecha, asignatura1, nota1, asignatura2, nota2);
     }
 
     public void imprimirLinea(){
-        System.out.println("+--------------+-----------------+------+--------------+-----------------+------+-----------------+------+");
+        System.out.println("+--------------+-----------------+-----------------+-----------------+------+--------------+-----------------+------+-----------------+------+");
 
     }
 
@@ -88,4 +88,6 @@ public class Output {
     public void mostrarMensajeAlumnoEliminado() {
         System.out.println("Alumno se elimino correctamente");
     }
+
+
 }

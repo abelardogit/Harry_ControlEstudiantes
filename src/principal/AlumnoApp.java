@@ -39,9 +39,6 @@ public class AlumnoApp {
     }
 
 
-
-
-
     private static void mostrarMenu(){
         output.mostrarMenu();
     }
@@ -86,7 +83,10 @@ public class AlumnoApp {
 
     private static void buscarAlumno(){
 
-        alumno.buscarAlumno();
+        System.out.println("ingrese apellido del alumno que desea buscar");
+        String alumnoBuscar = input.getPalabra();
+       alumno.buscarAlumno(alumnoBuscar);
+
     }
 
     private static void agregarAlumno(){
