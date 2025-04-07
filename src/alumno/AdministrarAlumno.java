@@ -87,20 +87,20 @@ public class AdministrarAlumno {
 
     public void actualizarAlumnos() {
 
-        String formato = "| %-12s | %-15s | %-15s | %-4s | %-15s | %-4s |\n";
+        String formato = "| %-12s | %-15s | %-15s | %-15s | %-4s | %-12s | %-15s | %-4s | %-15s | %-4s |\n";
 
 
-        output.imprimirLineaModificar();
-        output.imprimirCabeceraActulizar(formato);
-        output.imprimirLineaModificar();
+        output.imprimirLinea();
+        output.imprimirCabecera(formato);
+        output.imprimirLinea();
 
 
         for (Alumno alumno : listaAlumnos) {
 
-            output.imprimirAlumnoModificar(formato,alumno.getDniAlumno(), alumno.getNombreCompleto(), alumno.getAsignatura1(), alumno.getNostaAsignatura1(), alumno.getAsignatura2(), alumno.getNotaAsignatura2());
+            output.imprimirAlumno(formato,alumno.getDniAlumno(),alumno.getNombreCompleto(), alumno.getApellido1(), alumno.getApellido2(), alumno.getEdad(), alumno.getFechaNac(), alumno.getAsignatura1(), alumno.getNostaAsignatura1(), alumno.getAsignatura2(), alumno.getNotaAsignatura2());
         }
 
-        output.imprimirLineaModificar();
+        output.imprimirLinea();
 
 
 
@@ -205,6 +205,7 @@ public class AdministrarAlumno {
 
         ordenarListaAlumnos(listaAlumnos);
 
+        listarAlumnos();
         int encontrado = encontrarEstudiante(listaAlumnos,alumnoBuscar);
 
         if (encontrado != NOENCONTRADO){
@@ -277,6 +278,7 @@ public class AdministrarAlumno {
 
     private static boolean compararCadenas2(String cadena1, String cadena2){
 
+        boolean salir = false;
         char[] arrCad1 = cadena1.toCharArray();
         int numCarsCad1 = cadena1.length();
 
@@ -286,12 +288,16 @@ public class AdministrarAlumno {
         int indiceActual = 0;
         int numMaxCaracteres = Math.min(numCarsCad1, numCarsCad2);
 
-        while (indiceActual < numMaxCaracteres) {
+        while (indiceActual < numMaxCaracteres && !salir) {
             char currentChar1 = arrCad1[indiceActual];
             char currentChar2 = arrCad2[indiceActual];
             if (currentChar1 > currentChar2) {
+
+                salir = true;
                 return true;
             }else if (currentChar1 < currentChar2) {
+
+                salir = true;
                 return false;
             }
 
