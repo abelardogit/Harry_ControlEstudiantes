@@ -278,37 +278,33 @@ public class AdministrarAlumno {
 
     private static boolean compararCadenas2(String cadena1, String cadena2){
 
+        boolean esMayor = false;
         boolean salir = false;
         char[] arrCad1 = cadena1.toCharArray();
         int numCarsCad1 = cadena1.length();
-
         char[] arrCad2 = cadena2.toCharArray();
         int numCarsCad2 = cadena2.length();
-
         int indiceActual = 0;
         int numMaxCaracteres = Math.min(numCarsCad1, numCarsCad2);
-
         while (indiceActual < numMaxCaracteres && !salir) {
             char currentChar1 = arrCad1[indiceActual];
             char currentChar2 = arrCad2[indiceActual];
             if (currentChar1 > currentChar2) {
 
                 salir = true;
-                return true;
+                esMayor = true;
             }else if (currentChar1 < currentChar2) {
 
                 salir = true;
-                return false;
-            }
+                esMayor = false;
 
+            }
             indiceActual++;
         }
-
         if (indiceActual == numMaxCaracteres) {
             return numCarsCad1 > numCarsCad2;
         }
-
-        return true;
+        return esMayor;
     }
 
 
